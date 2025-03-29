@@ -1,5 +1,5 @@
 import OnboardingMan from "@/components/OnboardingMan";
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link, useRouter } from "expo-router";
@@ -26,7 +26,7 @@ export default function Index() {
           <Text className="font-bold text-3xl text-primary-text">Spend Smarter</Text>
           <Text className="font-bold text-3xl text-primary-text">Save More</Text>
         </View>
-        <TouchableOpacity onPress={() => router.navigate('/auth/register')}>
+        <TouchableOpacity onPress={() => router.navigate('/home')}>
           <LinearGradient colors={['#69AEA9', '#3F8782']} className="w-full h-16 flex justify-center items-center" style={{ borderRadius: 9999 }}>
             <Text className="font-bold text-white text-lg">Get Started</Text>
           </LinearGradient>
