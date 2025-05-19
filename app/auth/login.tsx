@@ -1,12 +1,14 @@
-import { View, Image, Text, TextInput,TouchableOpacity,TouchableHighlight } from "react-native";
+import { View, Image, Text, TextInput,TouchableOpacity,TouchableHighlight,TouchableWithoutFeedback } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link,useRouter } from "expo-router";
 import Checkbox from "expo-checkbox";
 import { useState } from "react";
 import { LinearGradient } from 'expo-linear-gradient';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const Login = () => {
   const [isChecked, setChecked] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   return (
@@ -34,8 +36,12 @@ const Login = () => {
         </View>
         <View className="w-full gap-2">
           <Text className="color-primary-text">Password</Text>
-          <View className="border-2 rounded-lg border-gray-300">
-            <TextInput placeholder="Enter your password" className="h-12" />
+          <View className="flex-row justify-between items-center border-2 rounded-lg border-gray-300">
+            <TextInput placeholder="Enter your password" className="h-12" secureTextEntry={!showPassword} />
+            {/* Hide show password icon */}
+            <TouchableWithoutFeedback onPress={() => setShowPassword(!showPassword)}>
+              <Ionicons name={showPassword ? "eye" : "eye-off"} size={24} color="#d1d5db" className="mr-2"/>
+            </TouchableWithoutFeedback>
           </View>
         </View>
         {/* Forgot password */}
