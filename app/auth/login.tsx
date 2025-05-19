@@ -3,8 +3,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Link,useRouter } from "expo-router";
 import Checkbox from "expo-checkbox";
 import { useState } from "react";
-import { LinearGradient } from 'expo-linear-gradient';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { LinearGradient } from "expo-linear-gradient";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Login = () => {
   const [isChecked, setChecked] = useState(false);
