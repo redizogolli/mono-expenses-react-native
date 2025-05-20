@@ -12,6 +12,8 @@ module.exports = {
         'light-primary': '#EEF8F7',
         'primary-text': '#438883',
         'orange': '#FFAB7B',
+        'info': '#2F7E79',
+        'lighter-gray': '#D0E5E4',
       },
       opacity: {
         '6' : '0.06',
