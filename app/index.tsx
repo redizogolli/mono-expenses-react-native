@@ -1,5 +1,5 @@
 import OnboardingMan from "@/components/OnboardingMan";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link, useRouter } from "expo-router";
@@ -36,6 +36,7 @@ export default function Index() {
           <Link className="text-primary-text" href={{ pathname: '/auth/login' }}>Log In</Link>
         </View>
       </View>
+      <StatusBar hidden={true}/>
     </SafeAreaView>
   );
 }
