@@ -1,8 +1,21 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
-import { StatusBar } from "react-native";
+import { StatusBar, TouchableOpacity } from "react-native";
+import { useRouter, usePathname } from 'expo-router';
+
+const CustomTabBarButton = ({ children, onPress }: { children?: React.ReactNode, onPress: any }) => (
+  <TouchableOpacity
+    className="w-16 h-16 bg-primary-text rounded-full shadow-lg absolute -top-12 left-1/2 -translate-x-1/2 items-center justify-center"
+    onPress={onPress}
+  >
+    {children}
+  </TouchableOpacity>
+);
 
 const TabsLayout = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <>
       <StatusBar
@@ -24,6 +37,7 @@ const TabsLayout = () => {
             alignItems: "center",
           },
           tabBarStyle: {
+            position: "relative",
             paddingTop: 15,
             height: 70,
           },
@@ -47,13 +61,31 @@ const TabsLayout = () => {
             ),
           }}
         />
-        {/* <Tabs.Screen
-                name="wallet"
-                options={{
-                    headerShown: false,
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="google-wallet" color={color} />,
-                }}
-            /> */}
+        {pathname === '/home' ? (
+          <Tabs.Screen
+            name="wallet2"
+            options={{
+              headerShown: false,
+              tabBarStyle: {
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+              },
+              tabBarIcon: ({ color }) => <FontAwesome size={28} name="plus" color={'white'} />,
+              tabBarButton: (props) => (
+                <CustomTabBarButton {...props} onPress={() => router.navigate('/wallet2')}></CustomTabBarButton>
+              ),
+            }}
+          />
+        ) : (
+          <Tabs.Screen
+            name="wallet2"
+            options={{
+              headerShown: false,
+              href: null
+            }}
+          />
+        )}
         <Tabs.Screen
           name="wallet"
           options={{
