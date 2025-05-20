@@ -24,7 +24,6 @@ const Login = () => {
         Sign in to your account
       </Text>
       <View className="p-6 w-full gap-2">
-        //input fields
         <View className="w-full gap-2">
           <Text className="color-primary-text">Email Address</Text>
           <View className="border-2 rounded-lg border-gray-300">
