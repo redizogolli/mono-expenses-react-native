@@ -11,7 +11,11 @@ module.exports = {
       colors:{
         'light-primary': '#EEF8F7',
         'primary-text': '#438883',
-      }
+        'orange': '#FFAB7B',
+      },
+      opacity: {
+        '6' : '0.06',
+      },
     },
   },
   plugins: [],
