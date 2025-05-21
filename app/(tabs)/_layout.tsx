@@ -1,7 +1,7 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 import { StatusBar, TouchableOpacity } from "react-native";
-import { useRouter, usePathname } from 'expo-router';
+import { usePathname } from 'expo-router';
 
 const CustomTabBarButton = ({ children, onPress }: { children?: React.ReactNode, onPress: any }) => (
   <TouchableOpacity
@@ -13,9 +13,7 @@ const CustomTabBarButton = ({ children, onPress }: { children?: React.ReactNode,
 );
 
 const TabsLayout = () => {
-  const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <>
       <StatusBar
@@ -73,7 +71,7 @@ const TabsLayout = () => {
               },
               tabBarIcon: ({ color }) => <FontAwesome size={28} name="plus" color={'white'} />,
               tabBarButton: (props) => (
-                <CustomTabBarButton {...props} onPress={() => router.navigate('/wallet2')}></CustomTabBarButton>
+                <CustomTabBarButton {...props} onPress={props.onPress}></CustomTabBarButton>
               ),
             }}
           />
