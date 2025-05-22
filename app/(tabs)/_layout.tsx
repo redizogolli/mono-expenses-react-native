@@ -2,6 +2,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 import { StatusBar, TouchableOpacity } from "react-native";
 import { usePathname } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const CustomTabBarButton = ({ children, onPress }: { children?: React.ReactNode, onPress: any }) => (
   <TouchableOpacity
@@ -27,6 +28,7 @@ const TabsLayout = () => {
         screenOptions={{
           tabBarShowLabel: false,
           tabBarActiveTintColor: "#408782",
+          tabBarInactiveTintColor: "#AAAAAA",
           tabBarItemStyle: {
             width: "100%",
             height: "100%",
@@ -36,8 +38,13 @@ const TabsLayout = () => {
           },
           tabBarStyle: {
             position: "relative",
-            paddingTop: 15,
-            height: 70,
+            paddingTop: 10,
+            height: 60,
+            backgroundColor: "white",
+            borderTopWidth: 0,
+            shadowColor: "#000",
+            //curved svg 
+
           },
         }}
       >
@@ -46,7 +53,7 @@ const TabsLayout = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color }) => (
-              <FontAwesome size={28} name="home" color={color} />
+              <Ionicons size={28} name={pathname === '/home'?`home`:'home-outline'} color={color} />
             ),
           }}
         />
@@ -55,7 +62,7 @@ const TabsLayout = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color }) => (
-              <FontAwesome size={28} name="pie-chart" color={color} />
+              <Ionicons size={28} name={pathname === '/statistics'?`stats-chart`:'stats-chart-outline'} color={color} />
             ),
           }}
         />
@@ -89,7 +96,7 @@ const TabsLayout = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color }) => (
-              <FontAwesome size={28} name="google-wallet" color={color} />
+              <Ionicons size={28} name={pathname === '/wallet'?`wallet`:'wallet-outline'} color={color} />
             ),
           }}
         />
@@ -98,7 +105,7 @@ const TabsLayout = () => {
           options={{
             headerShown: false,
             tabBarIcon: ({ color }) => (
-              <FontAwesome size={28} name="user" color={color} />
+              <FontAwesome size={28} name={pathname === '/profile'?`user`:'user-o'} color={color} />
             ),
           }}
         />
