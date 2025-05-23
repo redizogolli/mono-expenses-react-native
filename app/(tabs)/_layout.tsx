@@ -3,7 +3,7 @@ import { usePathname, useRouter } from "expo-router";
 import { StatusBar, TouchableOpacity, View, Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Svg, { Path } from "react-native-svg";
+import Svg, { FeGaussianBlur, FeMerge, FeMergeNode, FeOffset, Filter, Path } from "react-native-svg";
 import { Dimensions } from "react-native";
 import Home from "./home";
 import Statistics from "./statistics";
@@ -25,11 +25,11 @@ const CustomTabBarButton = ({
   </TouchableOpacity>
 );
 
-const Shape = () => {
+const Shape = ({ isHome }: { isHome: boolean }) => {
   const WIDTH = Dimensions.get("window").width;
   const HEIGHT = 80;
   const CORNER_RADIUS = 12;
-  const CUTOUT_RADIUS = 42;
+  let CUTOUT_RADIUS = isHome ? 42 : 0;
   const CUTOUT_LEFT_X = WIDTH / 2 - CUTOUT_RADIUS;
   const CUTOUT_RIGHT_X = WIDTH / 2 + CUTOUT_RADIUS;
 
@@ -52,17 +52,16 @@ const Shape = () => {
    * - Close the path
    */
   const d = `
-M0,${HEIGHT}
-L0,${CORNER_RADIUS} Q0,0 ${CORNER_RADIUS},0
-L${CUTOUT_LEFT_X},0
-A${CUTOUT_RADIUS},${CUTOUT_RADIUS} 0 0 0 ${CUTOUT_RIGHT_X},0
-L${WIDTH - CORNER_RADIUS},0 Q${WIDTH},0 ${WIDTH},${CORNER_RADIUS}
-L${WIDTH},${HEIGHT}
-Z
-`;
+      M0,${HEIGHT}
+      L0,${CORNER_RADIUS} Q0,0 ${CORNER_RADIUS},0
+      L${CUTOUT_LEFT_X},0
+      A${CUTOUT_RADIUS},${CUTOUT_RADIUS} 0 0 0 ${CUTOUT_RIGHT_X},0
+      L${WIDTH - CORNER_RADIUS},0 Q${WIDTH},0 ${WIDTH},${CORNER_RADIUS}
+      L${WIDTH},${HEIGHT}
+      Z`;
   return (
     <Svg className="w-full h-full">
-      <Path fill={"#fff"} d={d} />
+      <Path fill={"#fff"} d={d}/>
     </Svg>
   );
 };
@@ -80,18 +79,34 @@ export default function TabNavigator() {
         className="bg-transparent"
       />
       <Tab.Navigator tabBar={(props) => <CustomTabBar />}>
-        <Tab.Screen name="home" component={Home} options={{
-          headerShown: false,
-        }} />
-        <Tab.Screen name="statistics" component={Statistics} options={{
-          headerShown: false,
-        }} />
-        <Tab.Screen name="wallet" component={Wallet} options={{
-          headerShown: false,
-        }} />
-        <Tab.Screen name="profile" component={Profile} options={{
-          headerShown: false,
-        }} />
+        <Tab.Screen
+          name="home"
+          component={Home}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="statistics"
+          component={Statistics}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="wallet"
+          component={Wallet}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="profile"
+          component={Profile}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Tab.Navigator>
     </>
   );
@@ -101,39 +116,65 @@ const CustomTabBar = () => {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <View className="relative h-20 w-full">
-      <Shape />
+    <View className="relative h-20 w-full ">
+      <Shape isHome={pathname === "/home"} />
       <View className="absolute top-4 left-0 w-full flex-row justify-around items-center">
         <View className="flex-row justify-around items-center flex-1">
-          <TouchableOpacity className="" onPress={() => { router.navigate("/home") }}>
+          <TouchableOpacity
+            className=""
+            onPress={() => {
+              router.navigate("/home");
+            }}
+          >
             <Ionicons
               size={36}
               name={pathname === "/home" ? `home` : "home-outline"}
               color={pathname === "/home" ? `#408782` : "#AAAAAA"}
             />
           </TouchableOpacity>
-          <TouchableOpacity className="" onPress={() => { router.navigate("/statistics") }}>
+          <TouchableOpacity
+            className=""
+            onPress={() => {
+              router.navigate("/statistics");
+            }}
+          >
             <Ionicons
               size={36}
-              name={pathname === "/statistics" ? `stats-chart` : "stats-chart-outline"}
+              name={
+                pathname === "/statistics"
+                  ? `stats-chart`
+                  : "stats-chart-outline"
+              }
               color={pathname === "/statistics" ? `#408782` : "#AAAAAA"}
             />
           </TouchableOpacity>
         </View>
-        <View className="relative w-16">
-          <CustomTabBarButton onPress={() => { }}>
-            <FontAwesome size={36} name="plus" color={"white"} />
-          </CustomTabBarButton>
-        </View>
+        {pathname === "/home" && (
+          <View className="relative w-16">
+            <CustomTabBarButton onPress={() => {}}>
+              <FontAwesome size={36} name="plus" color={"white"} />
+            </CustomTabBarButton>
+          </View>
+        )}
         <View className="flex-row justify-around items-center flex-1">
-          <TouchableOpacity className="" onPress={() => { router.navigate("/wallet") }}>
+          <TouchableOpacity
+            className=""
+            onPress={() => {
+              router.navigate("/wallet");
+            }}
+          >
             <Ionicons
               size={36}
               name={pathname === "/wallet" ? `wallet` : "wallet-outline"}
               color={pathname === "/wallet" ? `#408782` : "#AAAAAA"}
             />
           </TouchableOpacity>
-          <TouchableOpacity className="" onPress={() => { router.navigate("/profile") }}>
+          <TouchableOpacity
+            className=""
+            onPress={() => {
+              router.navigate("/profile");
+            }}
+          >
             <FontAwesome
               size={36}
               name={pathname === "/profile" ? `user` : "user-o"}

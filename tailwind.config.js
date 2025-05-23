@@ -16,6 +16,7 @@ module.exports = {
         'man': '277px'
       },
       colors:{
+        'primary-white': '#F9F9F9',
         'light-primary': '#EEF8F7',
         'primary-text': '#438883',
         'orange': '#FFAB7B',

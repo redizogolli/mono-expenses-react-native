@@ -3,7 +3,7 @@ import React from 'react'
 
 const Wallet = () => {
   return (
-    <View>
+    <View className='flex-1 bg-primary-white'>
       <Text>Wallet</Text>
     </View>
   )

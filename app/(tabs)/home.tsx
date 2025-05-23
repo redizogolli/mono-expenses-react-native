@@ -7,7 +7,7 @@ import TransactionItem from "@/components/TransactionItem";
 
 const Home = () => {
   return (
-    <View className="flex-1 bg-white">
+    <View className="flex-1 bg-primary-white">
       <HeaderBackground>
         <View className="flex-1 flex-row justify-between px-4 pt-16">
           <View>

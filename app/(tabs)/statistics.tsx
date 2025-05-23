@@ -3,7 +3,7 @@ import React from 'react'
 
 const Statistics = () => {
   return (
-    <View>
+    <View className='flex-1 bg-primary-white'>
       <Text>Statistics</Text>
     </View>
   )
