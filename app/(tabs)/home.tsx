@@ -5,13 +5,12 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import BalanceInfo from "@/components/BalanceInfo";
 import TransactionItem from "@/components/TransactionItem";
 import { FlashList } from "@shopify/flash-list";
-import { Transactions } from "@/utils/constants";
+import { People, Transactions } from "@/utils/constants";
 
 const Home = () => {
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-    <View className="flex-1 bg-primary-white">
+    <ScrollView showsVerticalScrollIndicator={false} className="bg-primary-white">
       <HeaderBackground>
         <View className="flex-1 flex-row justify-between px-4 pt-16">
           <View>
@@ -40,6 +39,7 @@ const Home = () => {
         <BalanceInfo />
       </View>
       <View className="flex-1 mt-8 px-5">
+        <View className="flex-1">
           <View className="flex-row justify-between items-center">
             <Text className="text-lighter-black font-semibold text-lg">
               Transactions History
@@ -47,30 +47,40 @@ const Home = () => {
             <Text className="text-slate-500 text-sm">See all</Text>
           </View>
           <View className="flex-1 mt-5 flex gap-4">
-            {/* <FlashList
-              estimatedItemSize={41}
-              data={transactions}
-              keyExtractor={(_: any, index: number) => index.toString()}
-              renderItem={({item,index} : any) => (
-                <TransactionItem
+            {Transactions.map((item, index) => (
+              <TransactionItem
                 key={index}
                 title={item.title}
                 date={item.date}
                 amount={item.amount}
               />
-              )}
-            /> */}
-            {Transactions.map((item, index) => (
-              <TransactionItem
-              key={index}
-              title={item.title}
-              date={item.date}
-              amount={item.amount}
-            />
             ))}
           </View>
         </View>
-    </View>
+        <View className="mt-8 flex-1 gap-4">
+          <View className="flex-row justify-between items-center">
+            <Text className="font-semibold text-lg">Send Again</Text>
+            <Text className="text-slate-500 text-sm">See all</Text>
+          </View>
+          <View>
+            <FlashList
+              estimatedItemSize={41}
+              data={People}
+              ItemSeparatorComponent={() => <View style={{width: 16}} />}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(_: any, index: number) => index.toString()}
+              renderItem={({ item, index }: any) => (
+                <Image
+                  key={index}
+                  source={{ uri: item.imageUrl }}
+                  className="w-16 h-16 rounded-full"
+                />
+              )}
+            />
+          </View>
+        </View>
+      </View>
     </ScrollView>
   );
 };
