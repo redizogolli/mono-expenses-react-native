@@ -5,90 +5,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import BalanceInfo from "@/components/BalanceInfo";
 import TransactionItem from "@/components/TransactionItem";
 import { FlashList } from "@shopify/flash-list";
+import { Transactions } from "@/utils/constants";
 
 const Home = () => {
-  const transactions = [
-    {
-      title: "Upwork",
-      date: new Date(),
-      amount: 850,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -85,
-    },
-    {
-      title: "Paypal",
-      date: new Date(),
-      amount: 150,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -100,
-    },
-    {
-      title: "Youtube",
-      date: new Date(),
-      amount: 385,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -50,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -100,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -100,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -85,
-    },
-    {
-      title: "Paypal",
-      date: new Date(),
-      amount: 150,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -100,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -100,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -100,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -85,
-    },
-    {
-      title: "Paypal",
-      date: new Date(),
-      amount: 150,
-    },
-    {
-      title: "Transfer",
-      date: new Date(),
-      amount: -100,
-    },
-  ];
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -141,7 +60,7 @@ const Home = () => {
               />
               )}
             /> */}
-            {transactions.map((item, index) => (
+            {Transactions.map((item, index) => (
               <TransactionItem
               key={index}
               title={item.title}
